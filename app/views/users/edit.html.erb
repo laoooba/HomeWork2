@@ -3,6 +3,17 @@
     <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
     <h2>User info</h2>
     <div class="error_explanation">
+        <% if @user.errors.any? %>
+        <div class="alert">
+          <h1><%= @user.errors.count %>errors prohibited this obj from being saved:</h1>
+          <ul>
+            <% @user.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+        <% end %>
+      </div>
     <%= form_with model:@user, local:true do |f| %>
       <%= render 'layouts/errors', obj: @user %>
       <div class="form-group">
